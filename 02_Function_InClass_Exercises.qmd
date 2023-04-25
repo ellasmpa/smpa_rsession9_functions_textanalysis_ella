@@ -26,21 +26,34 @@ options(tigris_class = "sf")
 1) Create a function that will return the sum of 2 numbers.
 
 ```{r}
+1+1
+addtwonumbers <- function(firstnumber, secondnumber) {
+  result <- firstnumber + secondnumber
+  return(result)
+}
 
-
-
-
-
+addtwonumbers(34, 35)
 ```
 
 2) Create a function that will return the mean of a list of numbers fed to it. (Remember that in our case we're using the word "list" for easier understanding, but we're talking about a "vector" of numbers in R-speak.)
 
 ```{r}
+makemymean <- function(mynumbers) {
+  result <- mean(mynumbers)
+  return(result)
+}
 
+makemymean(c(20,30,40))
 
+--
+## the way i did it
+  
+mean_numbers <- function(numbers){
+  result <- mean(numbers)
+  return(result)
+}
 
-
-
+mean_numbers(c(1, 2, 3, 4))
 
 ```
 
@@ -48,9 +61,21 @@ options(tigris_class = "sf")
 *"The mean is ___"*. (Where the blank is the mean.)
 
 ```{r}
+## the way prof did it
 
+numberlist <- c(11, 21, 15, 83)
 
+resultingmean <- makemymean(numberlist)
 
+paste0(" the mean is! ", resultingmean)
+
+mean_with_text <- function(numberlist){
+  resultingmean <- makemymean(numberlist)
+  finaltext <- paste0(" the mean is! ", resultingmean)
+  return(finaltext)
+}
+
+mean_with_text(c(1, 19, 5, 77))
 
 
 ```
@@ -67,12 +92,27 @@ head(flights)
 4) Using the `flights` dataset, create a function that filters the data frame to only include records from a single originating airport (column name `origin`). In other words, it should let you enter an origin airport and return all the records from just that airport.
 
 ```{r}
+## from class
 
+airportname <- "JFK"
 
+flights %>% 
+  filter(origin == airportname)
 
+filter_flights_byorigin_aiporrt <- function(airportname) {
+ result <- flights %>% 
+  filter(origin == airportname)
+  return(result)
+}
 
+filter_flights_byorigin_aiporrt("JFK")
 
+---
 
+allfrom_jfk <- function(filter == "origin")){
+  result <- paste0(" The mean is ", " ", mean(numbers))
+  return(result)
+}
 
 ```
 
@@ -84,10 +124,19 @@ head(flights)
 
 ```{r}
 
+airportname <- "JFK"
+flights %>% 
+  filter(origin == airportname) %>% 
+  count(carrier)
 
+count_byairline_foroneairport <- function(airportname) {
+ 
+ result <- flights %>% 
+  filter(origin == airportname) %>% 
+  count(carrier)
+ return(result)
+}
 
-
-
-
+count_byairline_foroneairport("JFK")
 ```
 
