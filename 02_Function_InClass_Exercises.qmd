@@ -129,14 +129,19 @@ flights %>%
   filter(origin == airportname) %>% 
   count(carrier)
 
-count_byairline_foroneairport <- function(airportname) {
+top_airline_foroneairport <- function(airportname) {
  
  result <- flights %>% 
   filter(origin == airportname) %>% 
-  count(carrier)
+  count(carrier, sort = TRUE) %>% 
+   head(1) %>% 
+   select(carrier)
  return(result)
 }
 
-count_byairline_foroneairport("JFK")
+top_airline_foroneairport("JFK")
+```
+```{r}
+
 ```
 

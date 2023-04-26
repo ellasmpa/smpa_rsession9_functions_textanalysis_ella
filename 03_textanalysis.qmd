@@ -50,14 +50,18 @@ If you are trying to create a list of unique words, R will treat differences in 
 
 ```{r}
 a_list_of_words <- c("Dog", "dog", "dog", "cat", "cat", ",")
+
 unique(a_list_of_words)
 ```
 
 Fortunately, this is a solved problem with tidytext, which has a function called `unnest_tokens` that will convert the text to lowercase and remove all punctuation. The way that `unnest_tokens` works is that we tell it what we want to call the field we're creating with this breaking apart, then we tell it what we're breaking apart -- what field has all the text in it. For us, that's the `text` column:
 
 ```{r}
-unique_words <- releases %>% select(text) %>%
+unique_words <- releases %>% 
+  select(text) %>%
   unnest_tokens(word, text)
+
+
 head(unique_words)
 ```
 
@@ -75,6 +79,7 @@ unique_words %>%
       labs(x = "Count",
       y = "Unique words",
       title = "Count of unique words found in Cardin releases")
+
 ```
 
 Well, that's a bit underwhelming - a lot of very common (and short) words. This also is a solved problem in working with text data, and words like "a" and "the" are known as "stop words". In most cases you'll want to remove them from your analysis since they are so common. Tidytext provides a dataframe of them that we'll load, and then we'll add some of our own.
